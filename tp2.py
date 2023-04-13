@@ -125,7 +125,7 @@ def signalreconstruction(signal, m, N, alpha=2.0, beta=8.0, gamma=0.2):
 def main(file):
 
     np.seterr(invalid='ignore')
-    fs, signal = read(file)
+    fs, signal = read("fichiers_bruit/"+file)
     printinitialspeechwav(fs, signal)
     m, N = 8*fs//1000, 32*fs//1000
 
@@ -136,7 +136,7 @@ def main(file):
         for beta in range(7,11,1):
             for gamma in np.arange(0.1,0.6,0.1):
                 signal_modif, _ = signalreconstruction( signal, m, N, alpha, beta, gamma)
-                write("output/{}/output_A{}_B{}_G{}_{}".format(file.rsplit('.', maxsplit=1)[0], alpha, beta, gamma, file), fs, np.int16( signal_modif ))
+                write("output/output_A{}_B{}_G{}_{}".format(file.rsplit('.', maxsplit=1)[0], alpha, beta, gamma), fs, np.int16( signal_modif ))
     plt.figure(1).set_figheight(10)
     plt.figure(1).set_figwidth(12)
     plt.subplot(212)
@@ -149,6 +149,6 @@ if __name__ == "__main__":
         print("Usage : python3 {}".format(sys.argv[0]))
         sys.exit(1)
     else:
-        main("fichiers_bruit/test_seg_bruit_10dB.wav")
-        #main("fichiers_bruit/test_seg_bruit_0dB.wav")
-        #main("fichiers_bruit/signal_avec_bruit_0dB.wav")
+        main("test_seg_bruit_10dB.wav")
+        #main("test_seg_bruit_0dB.wav")
+        #main("signal_avec_bruit_0dB.wav")
