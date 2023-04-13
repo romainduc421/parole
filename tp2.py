@@ -136,7 +136,7 @@ def main(file):
         for beta in range(7,11,1):
             for gamma in np.arange(0.1,0.6,0.1):
                 signal_modif, _ = signalreconstruction( signal, m, N, alpha, beta, gamma)
-                write("output/output_A{}_B{}_G{}_{}".format(file.rsplit('.', maxsplit=1)[0], alpha, beta, gamma), fs, np.int16( signal_modif ))
+                write("output/{}/output_A{}_B{}_G{}_{}".format(file.rsplit('.', maxsplit=1)[0], alpha, beta, gamma, file), fs, np.int16( signal_modif ))
     plt.figure(1).set_figheight(10)
     plt.figure(1).set_figwidth(12)
     plt.subplot(212)
