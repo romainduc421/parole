@@ -97,23 +97,13 @@ def signalreconstruction(signal, m, N, alpha=2.0, beta=8.0, gamma=0.2):
             noise += np.mean(amplitude)
         if i == m*size - m:
             noise /= size  # diviser la somme totale des amplitudes spectrales par le nombre de fenêtres (sous-signaux traités)
-            # plt.figure(8)
-            # plt.title("Spectre d'amplitude avant soustraction spectrale")
-            # plt.plot(amplitude[0:1024])
-            # plt.figure(11)
-            # plt.plot(signal[0:706])
             
-
         tab_spectres.append(ampli_aff)
     
             
         phase = spectrumphase(spectre)
         # modification spectre d'amplitude
         amplitude = spectralsubstraction(amplitude, noise, alpha, beta, gamma)
-        # if i == m*size - m :
-        #     plt.figure(9)
-        #     plt.title("Spectre d'amplitude après soustraction spectrale")
-        #     plt.plot(amplitude[0:1024])
 
         # reconstruction du signal
         spectre = spectrereconstruction(amplitude, phase)
@@ -159,6 +149,6 @@ if __name__ == "__main__":
         print("Usage : python3 {}".format(sys.argv[0]))
         sys.exit(1)
     else:
-        main("test_seg_bruit_10dB.wav")
-        #main("test_seg_bruit_0dB.wav")
-        #main("signal_avec_bruit_0dB.wav")
+        main("fichiers_bruit/test_seg_bruit_10dB.wav")
+        #main("fichiers_bruit/test_seg_bruit_0dB.wav")
+        #main("fichiers_bruit/signal_avec_bruit_0dB.wav")
